@@ -28,8 +28,24 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'place_name' => 'required|min:3',
+            'address'   => 'required|min:10',
+            'description' => 'required|min:10',
+            'longitude'  => 'required',
+            'latitude'  => 'required'
+        ]);
+        Place::create([
+            'place_name' => $request->place_name,
+            'address'  => $request->address,
+            'description' => $request->description,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
+        ]);
+        notify()->success('Place has been created');
+        return redirect()->route('places.index');
     }
+
 
     /**
      * Display the specified resource.

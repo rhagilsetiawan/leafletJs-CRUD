@@ -14,7 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Styles -->
     @yield('styles')
@@ -84,5 +85,7 @@
     </div>
     @stack('scripts')
     @notifyJs
+    <script src="{{ mix('js/app.js') }}"></script>
+
 </body>
 </html>

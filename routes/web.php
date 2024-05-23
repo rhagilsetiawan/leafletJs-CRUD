@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaceMapController;
+use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DataController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +28,11 @@ use App\Http\Controllers\PlaceMapController;
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', [HomeController::class,'index'])->name('home');
 
 Route::get('/', [PlaceMapController::class,'index'])->name('frontpage');
-Route::get('/place/data', 'DataController@places')->name('place.data'); // DATA TABLE CONTROLLER
+Route::get('/place/data', [DataController::class,'place'])->name('place.data'); // DATA TABLE CONTROLLER
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('places', 'PlaceController');
+    Route::resource('places', PlaceController::class);
 });
